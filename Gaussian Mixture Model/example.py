@@ -51,7 +51,6 @@ X_train = iris.data[train_index]
 y_train = iris.target[train_index]
 X_test = iris.data[test_index]
 y_test = iris.target[test_index]
-print(X_train)
 # print(y_train)
 n_classes = len(np.unique(y_train))  # 3
 
@@ -64,7 +63,6 @@ estimators = {
 }
 
 n_estimators = len(estimators)
-print(n_estimators)
 
 plt.figure(figsize=(3 * n_estimators // 2, 6))
 plt.subplots_adjust(
@@ -91,17 +89,20 @@ for index, (name, estimator) in enumerate(estimators.items()):
             data[:, 0], data[:, 1], s=0.8, color=color, label=iris.target_names[n]
         )
     # Plot the test data with crosses
-    for n, color in enumerate(colors):
-        data = X_test[y_test == n]
-        plt.scatter(data[:, 0], data[:, 1], marker="x", color=color)
+    # for n, color in enumerate(colors):
+    #     data = X_test[y_test == n]
+    #     plt.scatter(data[:, 0], data[:, 1], marker="x", color=color)
 
     y_train_pred = estimator.predict(X_train)
+    # print(y_train_pred)
+    # print('----------------')
+    # print(y_train)
     train_accuracy = np.mean(y_train_pred.ravel() == y_train.ravel()) * 100
     plt.text(0.05, 0.9, "Train accuracy: %.1f" % train_accuracy, transform=h.transAxes)
 
-    y_test_pred = estimator.predict(X_test)
-    test_accuracy = np.mean(y_test_pred.ravel() == y_test.ravel()) * 100
-    plt.text(0.05, 0.8, "Test accuracy: %.1f" % test_accuracy, transform=h.transAxes)
+    # y_test_pred = estimator.predict(X_test)
+    # test_accuracy = np.mean(y_test_pred.ravel() == y_test.ravel()) * 100
+    # plt.text(0.05, 0.8, "Test accuracy: %.1f" % test_accuracy, transform=h.transAxes)
 
     plt.xticks(())
     plt.yticks(())
