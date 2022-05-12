@@ -140,11 +140,11 @@ for i in (range(0, len(inputData))):
 inputData = np.array(inputData)
 targetData = np.array(targetData)
 X = inputData[:, ::-1] # flip axes for better plotting
-gmm = GaussianMixture(n_components=16, verbose=True, tol=0.0001, covariance_type='spherical', random_state=0).fit(inputData)
+gmm = GaussianMixture(n_components=2, verbose=True, tol=0.0001, covariance_type='spherical', random_state=0).fit(inputData)
 gmm.means_init = np.array(
-  [inputData[targetData == i].mean(axis=0) for i in range(16)]
+  [inputData[targetData == i].mean(axis=0) for i in range(2)]
 )
-# make_ellipses(gmm, plt)
+make_ellipses(gmm, plt)
 y_train_pred = gmm.predict(inputData)
 train_count = 0
 for idx, i in enumerate(y_train_pred):
